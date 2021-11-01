@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MockModule } from 'ng-mocks';
 
 import { TableUsersComponent } from './table-users.component';
+import { MatTableModule } from '@angular/material/table';
 
 describe('TableUsersComponent', () => {
   let component: TableUsersComponent;
@@ -8,7 +10,10 @@ describe('TableUsersComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TableUsersComponent ]
+      declarations: [ TableUsersComponent ],
+      imports: [
+        MockModule(MatTableModule)
+      ],
     })
     .compileComponents();
   });

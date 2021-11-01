@@ -4,6 +4,7 @@ import { UsersComponent } from './page/users/users.component';
 import { TableUsersComponent } from './component/table-users/table-users.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserRoutingModule } from './users.module.routing';
+import { MatTableModule } from '@angular/material/table'  
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { UserRoutingModule } from './users.module.routing';
   imports: [
     CommonModule,
     UserRoutingModule,
+    MatTableModule,
   ],
   exports: [
     UsersComponent,
