@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Items } from 'src/app/models/users-response.model';
 import { Users } from 'src/app/models/users-table.model';
 import { UsersService } from '../../../services/users.service';
 
@@ -9,15 +11,14 @@ import { UsersService } from '../../../services/users.service';
 })
 export class UsersComponent implements OnInit {
 
-  constructor(private usersService: UsersService) { }
+  usersList: Users[];
 
-  usersList = Array();
-  total = 0;
+  constructor(private usersService: UsersService) {}
 
   ngOnInit(): void {
 
-    this.usersService.getListUser().subscribe((res: { total: number, items: Users[] }) => {
-      this.usersList = res.items;
+    this.usersService.getListUser().subscribe((res: { total: number, items: Users[]}) => {
+      this.usersList = res.items
     })
     
   }

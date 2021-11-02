@@ -7,6 +7,7 @@ import { MatTableModule } from '@angular/material/table';
 describe('TableUsersComponent', () => {
   let component: TableUsersComponent;
   let fixture: ComponentFixture<TableUsersComponent>;
+  const mockCol = ['profile', 'login', 'type'];
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -22,6 +23,8 @@ describe('TableUsersComponent', () => {
     fixture = TestBed.createComponent(TableUsersComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+
+    component.displayedColumns = mockCol;
   });
 
   it('should create', () => {

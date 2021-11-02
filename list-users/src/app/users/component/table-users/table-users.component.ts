@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Users } from 'src/app/models/users-table.model';
 
 @Component({
   selector: 'app-table-users',
@@ -9,14 +10,12 @@ import { Component, OnInit } from '@angular/core';
 
 export class TableUsersComponent implements OnInit {
 
-  ELEMENT_DATA = [];
-
   displayedColumns: string[] = ['profile', 'login', 'type'];
-  dataSource = this.ELEMENT_DATA;
+  @Input() list: Users[];
+  constructor() {}
 
-  constructor() { }
+  
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
 }

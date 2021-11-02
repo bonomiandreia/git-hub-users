@@ -11,9 +11,7 @@ import { Users } from '../models/users-table.model';
 })
 export class UsersService {
 
-  constructor(private http: HttpClient) { 
-
-  }
+  constructor(private http: HttpClient) {}
 
 
   getListUser(): Observable<{ total: number, items: Users[] }> {
