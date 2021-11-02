@@ -14,6 +14,8 @@ export class UsersComponent implements OnInit, OnDestroy {
 
   usersList: Users[];
   private readonly unsubscribe$: Subject<void>;
+  terminate = new Subject();
+
 
   constructor(private usersService: UsersService) {}
 
@@ -23,7 +25,7 @@ export class UsersComponent implements OnInit, OnDestroy {
 
   callServiceUsers(): void {
     this.usersService.getListUser()
-    .pipe(takeUntil(this.unsubscribe$))
+    .pipe(takeUntil(this.terminate))
     .subscribe((res: { total: number, items: Users[] }) => {
       this.usersList = res.items
     })
