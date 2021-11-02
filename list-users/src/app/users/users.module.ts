@@ -5,6 +5,7 @@ import { TableUsersComponent } from './component/table-users/table-users.compone
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserRoutingModule } from './users.module.routing';
 import { MatTableModule } from '@angular/material/table'  
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -15,9 +16,10 @@ import { MatTableModule } from '@angular/material/table'
     CommonModule,
     UserRoutingModule,
     MatTableModule,
+    HttpClientModule,
   ],
   exports: [
     UsersComponent,
-  ]
+  ],
 })
 export class UsersModule { }
