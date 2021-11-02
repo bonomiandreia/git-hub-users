@@ -15,7 +15,7 @@ export class UsersService {
 
 
   getListUser(): Observable<{ total: number, items: Users[] }> {
-    return this.http.get<UserResponse>(`${environment.endpoint}search//users?q=foo%20in:login`).pipe(
+    return this.http.get<UserResponse>(`${environment.endpoint}search/users?q=foo%20in:login`).pipe(
       map((res) => {
         let users = [];
         const response = res.items;

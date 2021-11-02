@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MockModule } from 'ng-mocks';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 describe('UsersComponent', () => {
   let component: UsersComponent;
@@ -14,7 +15,7 @@ describe('UsersComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ UsersComponent, TableUsersComponent ],
-      imports: [HttpClientModule, MockModule(MatInputModule), MockModule(MatTableModule)],
+      imports: [HttpClientModule, MockModule(MatInputModule), MockModule(MatTableModule), MatSnackBarModule],
     })
     .compileComponents();
   });

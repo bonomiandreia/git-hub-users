@@ -25,12 +25,14 @@ export class UsersComponent implements OnInit, OnDestroy {
   }
 
   callServiceUsers(): void {
-    this.usersService.getListUser()
+    this.usersService
+      .getListUser()
       .pipe(takeUntil(this.terminate))
       .subscribe((res: { total: number, items: Users[] }) => {
-        this.usersList = res.items
+        this.usersList = res.items;
       },
-      error => { this.snack.open(error.message, undefined,  {
+      error => { 
+        this.snack.open(error.message, undefined,  {
         duration: 2500
       })
     })
