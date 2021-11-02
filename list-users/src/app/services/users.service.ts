@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Items, UserResponse } from '../models/users-response.model';
 import { map } from 'rxjs/operators';
@@ -23,12 +23,12 @@ export class UsersService {
     },
   ): Observable<{ total: number, items: Users[] }> {
 
-    const params = new HttpParams({ fromObject: filters })
-            .set('sort', filters.sort)
-            .set('page', filters.per_page.toString())
-            .set('page_size', filters.per_page.toString());
+    const params = new HttpParams()
+    .set('sort', filters.sort)
+    .set('page', filters.page.toString())
+    .set('per_page', filters.per_page.toString());
 
-    return this.http.get<UserResponse>(`${environment.endpoint}search/users?q=${user}%20in:login`).pipe(
+    return this.http.get<UserResponse>(`${environment.endpoint}search/users?q=${user}%20in:login`, { params }).pipe(
       map((res) => {
         let users = [];
         const response = res.items;
