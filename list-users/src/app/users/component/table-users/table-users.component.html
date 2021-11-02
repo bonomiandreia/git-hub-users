@@ -1,17 +1,17 @@
-<table mat-table [dataSource]="list" class="mat-elevation-z8">
+<table mat-table [dataSource]="list">
 
     <ng-container matColumnDef="profile">
-      <th mat-header-cell *matHeaderCellDef> profile </th>
+      <th mat-header-cell *matHeaderCellDef> PROFILE </th>
       <td mat-cell *matCellDef="let element"> {{element.profile}} </td>
     </ng-container>
 
     <ng-container matColumnDef="login">
-      <th mat-header-cell *matHeaderCellDef> login </th>
+      <th mat-header-cell *matHeaderCellDef> LOGIN </th>
       <td mat-cell *matCellDef="let element"> {{element.login}} </td>
     </ng-container>
 
     <ng-container matColumnDef="type">
-      <th mat-header-cell *matHeaderCellDef> type </th>
+      <th mat-header-cell *matHeaderCellDef> TYPE </th>
       <td mat-cell *matCellDef="let element"> {{element.type}} </td>
     </ng-container>
 
