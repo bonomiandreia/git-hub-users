@@ -1,4 +1,5 @@
-export interface UserResponse {
+export interface Items {
+    map(arg0: (items: Items) => { login: string; profile: string; type: string; }): any[];
     login: string;
     id: number;
     node_id: string;
@@ -18,4 +19,10 @@ export interface UserResponse {
     type: string;
     site_admin: boolean;
     score: number;
+}
+
+export interface UserResponse {
+    total_count: number,
+    items: Items,
+
 }
