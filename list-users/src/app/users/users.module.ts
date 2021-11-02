@@ -5,6 +5,8 @@ import { TableUsersComponent } from './component/table-users/table-users.compone
 import { UserRoutingModule } from './users.module.routing';
 import { MatTableModule } from '@angular/material/table'  
 import { HttpClientModule } from '@angular/common/http';
+import { MatInputModule } from '@angular/material/input';
+
 
 @NgModule({
   declarations: [
@@ -16,6 +18,8 @@ import { HttpClientModule } from '@angular/common/http';
     UserRoutingModule,
     MatTableModule,
     HttpClientModule,
+    MatInputModule,
+
   ],
   exports: [
     UsersComponent,
