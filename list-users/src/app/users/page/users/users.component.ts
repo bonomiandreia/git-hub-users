@@ -13,7 +13,7 @@ import { UsersService } from '../../../services/users.service';
 })
 export class UsersComponent implements OnInit, OnDestroy {
 
-  usersList: Users[];
+  usersList: Users[] = [];
   private readonly unsubscribe$: Subject<void>;
   terminate = new Subject();
 
@@ -32,6 +32,7 @@ export class UsersComponent implements OnInit, OnDestroy {
         this.usersList = res.items;
       },
       error => { 
+        this.usersList = [];
         this.snack.open(error.message, undefined,  {
         duration: 2500
       })
