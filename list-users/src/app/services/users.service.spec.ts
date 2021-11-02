@@ -27,7 +27,7 @@ describe('UsersService', () => {
   it('should be call a method GET', () => {
     const url = `${environment.endpoint}search/users?q=foo%20in:login`;
 
-    service.getListUser().subscribe();
+    service.getListUser('foo', 'login', 9, 1).subscribe();
 
     const request = httpMock.expectOne(url);
 
