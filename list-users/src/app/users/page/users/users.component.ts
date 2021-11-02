@@ -6,6 +6,7 @@ import { debounceTime, distinctUntilChanged, takeUntil, map, switchMap, tap } fr
 import { Items } from 'src/app/models/users-response.model';
 import { Users } from 'src/app/models/users-table.model';
 import { UsersService } from '../../../services/users.service';
+import { Filters } from '../../../models/filters.model';
 
 @Component({
   selector: 'app-users',
@@ -18,7 +19,7 @@ export class UsersComponent implements OnInit, OnDestroy {
   private readonly unsubscribe$: Subject<void>;
   terminate = new Subject();
   search: FormControl = new FormControl();
-  filters;
+  filters: Filters = {};
 
 
   constructor(private usersService: UsersService, private snack: MatSnackBar) {}
@@ -32,14 +33,18 @@ export class UsersComponent implements OnInit, OnDestroy {
       .pipe(
         debounceTime(400),
         distinctUntilChanged(),
-        tap(async (res) => )
+        tap(async (res) => {
+          this.filters.login = res;
+          this.callServiceUsers();
+        })
       )
-      .subscribe(a => console.log(a));
+      .subscribe();
   } 
 
-  callServiceUsers(res: string) {
+  callServiceUsers() {
+    
     this.usersService
-      .getListUser()
+      .getListUser(this.filters.login)
       .pipe(takeUntil(this.terminate))
       .subscribe((res: { total: number, items: Users[] }) => {
         this.usersList = res.items;
