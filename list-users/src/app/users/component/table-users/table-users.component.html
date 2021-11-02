@@ -1,8 +1,10 @@
-<table mat-table [dataSource]="list">
+<table mat-table class="c-table-users" [dataSource]="list">
 
     <ng-container matColumnDef="profile">
       <th mat-header-cell *matHeaderCellDef> PROFILE </th>
-      <td mat-cell *matCellDef="let element"> {{element.profile}} </td>
+        <td mat-cell *matCellDef="let element"> 
+            <img class="c-table-users__image" src="{{ element.profile }}"/>
+        </td>
     </ng-container>
 
     <ng-container matColumnDef="login">

@@ -42,7 +42,6 @@ export class UsersComponent implements OnInit, OnDestroy {
   } 
 
   callServiceUsers() {
-    
     this.usersService
       .getListUser(this.filters.login)
       .pipe(takeUntil(this.terminate))

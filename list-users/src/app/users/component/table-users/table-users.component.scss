@@ -1,3 +1,40 @@
 table {
     width: 100%;
 }
+
+.c-table-users {
+    &__image {
+        width: 100px;
+        border-radius: 50%;
+        padding: 1em;
+    } 
+}
+
+
+@mixin mat-table-columns($columns)
+{
+    .mat-column-
+    {
+        @each $colName, $props in $columns {
+
+            $width: map-get($props, 'width');
+            
+            &#{$colName} 
+            {
+                flex: $width;
+                min-width: $width;
+                word-wrap: break-word !important;
+            }  
+        }
+    }
+}
+
+@include mat-table-columns((
+    
+        profile: (width: 3rem),
+        login: (width: 3rem),
+        type: (width: 2rem)
+));
+
+
+
