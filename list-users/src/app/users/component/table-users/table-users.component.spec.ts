@@ -3,6 +3,7 @@ import { MockModule } from 'ng-mocks';
 
 import { TableUsersComponent } from './table-users.component';
 import { MatTableModule } from '@angular/material/table';
+import { usersMock } from '../../../mocks/users-mock';
 
 describe('TableUsersComponent', () => {
   let component: TableUsersComponent;
@@ -25,6 +26,7 @@ describe('TableUsersComponent', () => {
     fixture.detectChanges();
 
     component.displayedColumns = mockCol;
+    component.list = usersMock;
   });
 
   it('should create', () => {

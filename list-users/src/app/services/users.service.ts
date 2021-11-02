@@ -20,6 +20,7 @@ export class UsersService {
         let users = [];
         const response = res.items;
 
+
         users = response.map((items: Users) => ({
           login: items.login,
           profile: items.avatar_url,
