@@ -1,7 +1,8 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Observable, Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { fromEvent, Observable, Subject } from 'rxjs';
+import { debounceTime, distinctUntilChanged, takeUntil, map, switchMap, tap } from 'rxjs/operators';
 import { Items } from 'src/app/models/users-response.model';
 import { Users } from 'src/app/models/users-table.model';
 import { UsersService } from '../../../services/users.service';
@@ -16,15 +17,27 @@ export class UsersComponent implements OnInit, OnDestroy {
   usersList: Users[] = [];
   private readonly unsubscribe$: Subject<void>;
   terminate = new Subject();
+  search: FormControl = new FormControl();
+  filters;
 
 
   constructor(private usersService: UsersService, private snack: MatSnackBar) {}
 
   ngOnInit(): void {
-    this.callServiceUsers();
+    this.onSearch();
   }
 
-  callServiceUsers(): void {
+  onSearch(): void {
+    this.search.valueChanges
+      .pipe(
+        debounceTime(400),
+        distinctUntilChanged(),
+        tap(async (res) => )
+      )
+      .subscribe(a => console.log(a));
+  } 
+
+  callServiceUsers(res: string) {
     this.usersService
       .getListUser()
       .pipe(takeUntil(this.terminate))

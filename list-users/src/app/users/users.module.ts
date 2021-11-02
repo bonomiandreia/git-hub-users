@@ -7,6 +7,7 @@ import { MatTableModule } from '@angular/material/table'
 import { HttpClientModule } from '@angular/common/http';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     HttpClientModule,
     MatInputModule,
     MatSnackBarModule,
+    ReactiveFormsModule,
 
   ],
   exports: [
