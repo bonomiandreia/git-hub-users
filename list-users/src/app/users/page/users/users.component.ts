@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { Items } from 'src/app/models/users-response.model';
@@ -17,7 +18,7 @@ export class UsersComponent implements OnInit, OnDestroy {
   terminate = new Subject();
 
 
-  constructor(private usersService: UsersService) {}
+  constructor(private usersService: UsersService, private snack: MatSnackBar) {}
 
   ngOnInit(): void {
     this.callServiceUsers();
@@ -25,9 +26,13 @@ export class UsersComponent implements OnInit, OnDestroy {
 
   callServiceUsers(): void {
     this.usersService.getListUser()
-    .pipe(takeUntil(this.terminate))
-    .subscribe((res: { total: number, items: Users[] }) => {
-      this.usersList = res.items
+      .pipe(takeUntil(this.terminate))
+      .subscribe((res: { total: number, items: Users[] }) => {
+        this.usersList = res.items
+      },
+      error => { this.snack.open(error.message, undefined,  {
+        duration: 2500
+      })
     })
   }
 

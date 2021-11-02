@@ -6,6 +6,7 @@ import { UserRoutingModule } from './users.module.routing';
 import { MatTableModule } from '@angular/material/table'  
 import { HttpClientModule } from '@angular/common/http';
 import { MatInputModule } from '@angular/material/input';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { MatInputModule } from '@angular/material/input';
     MatTableModule,
     HttpClientModule,
     MatInputModule,
+    MatSnackBarModule,
 
   ],
   exports: [
