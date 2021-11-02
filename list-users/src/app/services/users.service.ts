@@ -15,18 +15,16 @@ export class UsersService {
 
 
   getListUser(
-    user = '',
-    filters = {
-      sort: 'login',
-      per_page: 9,
-      page: 1,
-    },
+    user: string,
+    sort: string,
+    per_page: number,
+    page: number,
   ): Observable<{ total: number, items: Users[] }> {
 
     const params = new HttpParams()
-    .set('sort', filters.sort)
-    .set('page', filters.page.toString())
-    .set('per_page', filters.per_page.toString());
+    .set('sort', sort)
+    .set('page', page.toString())
+    .set('per_page', per_page.toString());
 
     return this.http.get<UserResponse>(`${environment.endpoint}search/users?q=${user}%20in:login`, { params }).pipe(
       map((res) => {

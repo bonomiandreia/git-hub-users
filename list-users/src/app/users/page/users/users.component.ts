@@ -7,6 +7,7 @@ import { Items } from 'src/app/models/users-response.model';
 import { Users } from 'src/app/models/users-table.model';
 import { UsersService } from '../../../services/users.service';
 import { Filters } from '../../../models/filters.model';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-users',
@@ -19,7 +20,13 @@ export class UsersComponent implements OnInit, OnDestroy {
   private readonly unsubscribe$: Subject<void>;
   terminate = new Subject();
   search: FormControl = new FormControl();
-  filters: Filters = {};
+  filters: Filters = {
+    sort: 'login',
+    per_page: 9,
+    page: 1,
+  };
+  key: string;
+  total: number;
 
 
   constructor(private usersService: UsersService, private snack: MatSnackBar) {}
@@ -34,19 +41,26 @@ export class UsersComponent implements OnInit, OnDestroy {
         debounceTime(400),
         distinctUntilChanged(),
         tap(async (res) => {
-          this.filters.login = res;
+          this.key = res;
           this.callServiceUsers();
         })
       )
       .subscribe();
   } 
 
+  changePage(event: PageEvent): void {
+    const pageIndex = event.pageIndex + 1;
+    this.filters.page = pageIndex;
+    this.callServiceUsers();
+  }
+
   callServiceUsers() {
     this.usersService
-      .getListUser(this.filters.login)
+      .getListUser(this.key, this.filters.sort, this.filters.per_page, this.filters.page)
       .pipe(takeUntil(this.terminate))
       .subscribe((res: { total: number, items: Users[] }) => {
         this.usersList = res.items;
+        this.total = res.total;
       },
       error => { 
         this.usersList = [];

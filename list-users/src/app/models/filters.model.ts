@@ -1,5 +1,5 @@
 export interface Filters {
-    login?: string,
-    sort?: string,
-    per_page?: number;
+    sort: string, 
+    per_page: number,
+    page: number,
 }
