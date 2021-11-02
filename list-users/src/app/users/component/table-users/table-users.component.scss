@@ -2,12 +2,22 @@ table {
     width: 100%;
 }
 
+$small: 475px;
+
 .c-table-users {
     &__image {
         width: 100px;
         border-radius: 50%;
-        padding: 1em;
+        padding: 0.5em;
     } 
+
+    @media screen and (max-width: $small) {
+
+        &__image {
+            width: 50px;
+        } 
+
+    }
 }
 
 
