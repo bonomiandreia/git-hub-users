@@ -5,6 +5,7 @@ import { Items, UserResponse } from '../models/users-response.model';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { Users } from '../models/users-table.model';
+import { TableType } from '../models/mock-table.model';
 
 @Injectable({
   providedIn: 'root'
@@ -20,14 +21,14 @@ export class UsersService {
     per_page: number,
     page: number,
     order: string,
-  ): Observable<{ total: number, items: Users[] }> {
+  ): Observable<{ total: number, items: TableType[] }> {
 
     const params = new HttpParams()
     .set('sort', sort)
     .set('order', order)
     .set('page', page.toString())
     .set('per_page', per_page.toString());
-    
+
     return this.http.get<UserResponse>(`${environment.endpoint}search/users?q=${user}%20in:login`, { params }).pipe(
       map((res) => {
         let users = [];

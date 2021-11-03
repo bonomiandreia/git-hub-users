@@ -9,6 +9,7 @@ import { UsersService } from '../../../services/users.service';
 import { Filters } from '../../../models/filters.model';
 import { PageEvent } from '@angular/material/paginator';
 import { Sort } from '@angular/material/sort';
+import { TableType } from 'src/app/models/mock-table.model';
 
 @Component({
   selector: 'app-users',
@@ -17,7 +18,7 @@ import { Sort } from '@angular/material/sort';
 })
 export class UsersComponent implements OnInit, OnDestroy {
 
-  usersList: Users[] = [];
+  usersList: { login: string, profile: string, type: string }[] = [];
   private readonly unsubscribe$: Subject<void>;
   terminate = new Subject();
   search: FormControl = new FormControl();
@@ -76,7 +77,7 @@ export class UsersComponent implements OnInit, OnDestroy {
     this.usersService
       .getListUser(this.key, this.filters.sort, this.filters.per_page, this.filters.page, this.filters.order)
       .pipe(takeUntil(this.terminate))
-      .subscribe((res: { total: number, items: Users[] }) => {
+      .subscribe((res: { total: number, items: TableType[] }) => {
         this.usersList = res.items;
         this.total = res.total;
       },
@@ -90,7 +91,10 @@ export class UsersComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.unsubscribe$.next();
-    this.unsubscribe$.complete();
+    if (this.unsubscribe$) {
+      this.unsubscribe$.next();
+      this.unsubscribe$.complete();
+    }
+
   }
 }
