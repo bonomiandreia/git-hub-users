@@ -2,7 +2,7 @@
     <div class="title pb-3">Minimalist by Andreia Bonomi</div>
     <mat-form-field class="example-full-width m-10" appearance="outline">
         <mat-label>Search some user on github...</mat-label>
-        <input matInput [formControl]="search" placeholder="Ex. foo" />
+        <input matInput [formControl]="search" name="search" placeholder="Ex. foo" />
     </mat-form-field>
     <div *ngIf="usersList.length > 0 else noList">
         <div class="c-table">

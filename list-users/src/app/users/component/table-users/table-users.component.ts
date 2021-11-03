@@ -17,7 +17,7 @@ export class TableUsersComponent implements OnInit {
   constructor() {}
 
   sortBy(event: Sort): void {
-    this.sortAndOrder.emit(event)
+    this.sortAndOrder.emit(event);
   }
 
   ngOnInit(): void {}

@@ -4,6 +4,7 @@ import { MockModule } from 'ng-mocks';
 import { TableUsersComponent } from './table-users.component';
 import { MatTableModule } from '@angular/material/table';
 import { usersMock } from '../../../mocks/users-mock';
+import { SortDirection } from '@angular/material/sort';
 
 describe('TableUsersComponent', () => {
   let component: TableUsersComponent;
@@ -32,4 +33,17 @@ describe('TableUsersComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should call sortBy', () => {
+    const spyEventEmmiter = jest.spyOn(component.sortAndOrder, 'emit');
+
+    const eventSpy = {
+      active: 'login',
+      direction: 'asc' as SortDirection
+    }
+
+    component.sortBy(eventSpy);
+    expect(spyEventEmmiter).toHaveBeenCalledWith(eventSpy);
+  });
+
 });

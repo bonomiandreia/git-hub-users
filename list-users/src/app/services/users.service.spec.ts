@@ -25,7 +25,7 @@ describe('UsersService', () => {
     expect(service).toBeTruthy();
   });
   it('should be call a method GET', () => {
-    const url = `${environment.endpoint}search/users?q=foo%20in:login`;
+    const url = `${environment.endpoint}search/users?q=foo%20in:login&sort=login&order=desc&page=1&per_page=9`;
 
     service.getListUser('foo', 'login', 9, 1, 'desc').subscribe();
 
