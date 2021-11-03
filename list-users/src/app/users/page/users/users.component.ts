@@ -21,12 +21,7 @@ export class UsersComponent implements OnInit, OnDestroy {
   private readonly unsubscribe$: Subject<void>;
   terminate = new Subject();
   search: FormControl = new FormControl();
-  filters: Filters = {
-    sort: 'login',
-    per_page: 9,
-    order: 'desc',
-    page: 1,
-  };
+  filters: Filters;
   key: string;
   total: number;
 
@@ -34,7 +29,17 @@ export class UsersComponent implements OnInit, OnDestroy {
   constructor(private usersService: UsersService, private snack: MatSnackBar) {}
 
   ngOnInit(): void {
+    this.resetFilters();
     this.onSearch();
+  }
+
+  resetFilters(): void {
+    this.filters = {
+      sort: 'login',
+      per_page: 9,
+      order: 'desc',
+      page: 1,
+    };
   }
 
   onSearch(): void {
@@ -57,12 +62,12 @@ export class UsersComponent implements OnInit, OnDestroy {
   }
 
   changeSort(event: Sort): void {
-    console.log(event)
-    console.log(event.active)
-    console.log(event.direction)
-
     this.filters.sort = event.active;
     this.filters.order = event.direction;
+
+    if (event.direction == '') {
+      this.filters.order = 'desc';
+    }
 
     this.callServiceUsers();
   }
@@ -77,6 +82,7 @@ export class UsersComponent implements OnInit, OnDestroy {
       },
       error => { 
         this.usersList = [];
+        this.resetFilters();
         this.snack.open(error.message, undefined,  {
         duration: 2500
       })

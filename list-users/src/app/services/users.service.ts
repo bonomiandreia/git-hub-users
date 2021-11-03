@@ -27,7 +27,7 @@ export class UsersService {
     .set('order', order)
     .set('page', page.toString())
     .set('per_page', per_page.toString());
-
+    console.log(order)
     return this.http.get<UserResponse>(`${environment.endpoint}search/users?q=${user}%20in:login`, { params }).pipe(
       map((res) => {
         let users = [];
