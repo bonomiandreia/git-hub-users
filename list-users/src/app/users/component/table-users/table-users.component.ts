@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Sort } from '@angular/material/sort';
 import { Users } from 'src/app/models/users-table.model';
 
 @Component({
@@ -11,10 +12,13 @@ import { Users } from 'src/app/models/users-table.model';
 export class TableUsersComponent implements OnInit {
 
   displayedColumns: string[] = ['profile', 'login', 'type'];
+  @Output() sortAndOrder = new EventEmitter<Sort>();
   @Input() list: Users[];
   constructor() {}
 
-  
+  sortBy(event: Sort): void {
+    this.sortAndOrder.emit(event)
+  }
 
   ngOnInit(): void {}
 

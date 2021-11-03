@@ -9,6 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatSnackBarModule,
     ReactiveFormsModule,
     MatPaginatorModule,
+    MatSortModule,
 
   ],
   exports: [

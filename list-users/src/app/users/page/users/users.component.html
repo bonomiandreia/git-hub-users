@@ -6,7 +6,7 @@
     </mat-form-field>
     <div *ngIf="usersList.length > 0 else noList">
         <div class="c-table">
-            <app-table-users [list]="usersList"></app-table-users>
+            <app-table-users [list]="usersList" (sortAndOrder)="changeSort($event)"></app-table-users>
         </div>
     </div>
     <mat-paginator

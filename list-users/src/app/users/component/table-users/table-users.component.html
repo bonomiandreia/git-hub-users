@@ -1,4 +1,4 @@
-<table mat-table class="c-table-users" [dataSource]="list">
+<table matSort (matSortChange)="sortBy($event)" mat-table class="c-table-users" [dataSource]="list">
 
     <ng-container matColumnDef="profile">
       <th mat-header-cell *matHeaderCellDef> PROFILE </th>
@@ -8,13 +8,13 @@
     </ng-container>
 
     <ng-container matColumnDef="login">
-      <th mat-header-cell *matHeaderCellDef> LOGIN </th>
-      <td mat-cell *matCellDef="let element"> {{element.login}} </td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number"> LOGIN </th>
+      <td mat-cell *matCellDef="let element"> {{ element.login }} </td>
     </ng-container>
 
     <ng-container matColumnDef="type">
-      <th mat-header-cell *matHeaderCellDef> TYPE </th>
-      <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number"> TYPE </th>
+      <td mat-cell *matCellDef="let element"> {{ element.type }} </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

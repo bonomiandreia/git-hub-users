@@ -19,10 +19,12 @@ export class UsersService {
     sort: string,
     per_page: number,
     page: number,
+    order: string,
   ): Observable<{ total: number, items: Users[] }> {
 
     const params = new HttpParams()
     .set('sort', sort)
+    .set('order', order)
     .set('page', page.toString())
     .set('per_page', per_page.toString());
 
@@ -30,7 +32,6 @@ export class UsersService {
       map((res) => {
         let users = [];
         const response = res.items;
-
 
         users = response.map((items: Users) => ({
           login: items.login,

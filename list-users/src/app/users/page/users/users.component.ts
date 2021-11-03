@@ -8,6 +8,7 @@ import { Users } from 'src/app/models/users-table.model';
 import { UsersService } from '../../../services/users.service';
 import { Filters } from '../../../models/filters.model';
 import { PageEvent } from '@angular/material/paginator';
+import { Sort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-users',
@@ -23,6 +24,7 @@ export class UsersComponent implements OnInit, OnDestroy {
   filters: Filters = {
     sort: 'login',
     per_page: 9,
+    order: 'desc',
     page: 1,
   };
   key: string;
@@ -54,9 +56,20 @@ export class UsersComponent implements OnInit, OnDestroy {
     this.callServiceUsers();
   }
 
+  changeSort(event: Sort): void {
+    console.log(event)
+    console.log(event.active)
+    console.log(event.direction)
+
+    this.filters.sort = event.active;
+    this.filters.order = event.direction;
+
+    this.callServiceUsers();
+  }
+
   callServiceUsers() {
     this.usersService
-      .getListUser(this.key, this.filters.sort, this.filters.per_page, this.filters.page)
+      .getListUser(this.key, this.filters.sort, this.filters.per_page, this.filters.page, this.filters.order)
       .pipe(takeUntil(this.terminate))
       .subscribe((res: { total: number, items: Users[] }) => {
         this.usersList = res.items;
