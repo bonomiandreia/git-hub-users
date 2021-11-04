@@ -24,4 +24,4 @@ Angular / Unit testing (jest) / Angular material
 `ng serve` or`ng serve --coverage`
 
 
-https://naughty-murdock-494309.netlify.app
+https://xenodochial-shaw-232e7a.netlify.app/
