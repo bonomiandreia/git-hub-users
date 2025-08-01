@@ -5,7 +5,6 @@ Angular / Unit testing (jest) / Angular material
 ![image](https://user-images.githubusercontent.com/39713034/140238426-06d3be46-85a1-4b24-ad44-fa6a18215e04.png)
 
 
-
 # Run project
 
 `cd list-users`
