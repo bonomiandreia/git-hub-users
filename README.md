@@ -8,9 +8,6 @@ Angular / Unit testing (jest) / Angular material
 
 # Run project
 
-
-
-
 `cd list-users`
 
 `npm i`
